@@ -5,8 +5,20 @@ import { getUserById } from "../data/fakeApi";
 
 const UserPage = () => {
   const { id } = useParams();
-  const { name, descr } = getUserById(id);
+  const user = getUserById(id);
 
+  if (!user) {
+    return (
+      <div>
+        <Link to="/users">Back</Link>
+        <h2>Користувача з ID {id} не знайдено</h2>
+      </div>
+    );
+  }
+
+  const { name, descr } = user;
+
+  //jsx
   return (
     <div>
       <Link to="/users">Back</Link>
