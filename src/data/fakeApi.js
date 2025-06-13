@@ -1,3 +1,5 @@
+//fakeApi.js
+
 export const users = [
   { id: "1", name: "Іван", descr: "Good" },
   { id: "2", name: "Олена", descr: "Normal" },

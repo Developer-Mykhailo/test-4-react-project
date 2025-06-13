@@ -1,3 +1,5 @@
+//UserPage.jsx
+
 import { Link, useParams } from "react-router-dom";
 import { getUserById } from "../data/fakeApi";
 
