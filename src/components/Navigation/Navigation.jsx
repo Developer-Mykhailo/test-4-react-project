@@ -26,6 +26,13 @@ const Navigation = () => {
       >
         Contact
       </NavLink>
+
+      <NavLink
+        to="/users"
+        className={({ isActive }) => clsx(s.link, isActive && s.accent)}
+      >
+        Users
+      </NavLink>
     </nav>
   );
 };
