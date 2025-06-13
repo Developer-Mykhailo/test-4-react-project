@@ -1,11 +1,19 @@
 //UserPage.jsx
 
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import { getUserById } from "../data/fakeApi";
+import clsx from "clsx";
+import s from "../components/Navigation/Navigation.module.css";
 
 const UserPage = () => {
   const { id } = useParams();
-  const user = getUserById(id);
+  const user = getUserById(String(id));
   const navigate = useNavigate();
 
   if (!user) {
@@ -22,8 +30,6 @@ const UserPage = () => {
   //jsx
   return (
     <div>
-      {/* <Link to="/users">Back</Link> */}
-
       <button onClick={() => navigate(-1)}>Go Back</button>
 
       <h2>{name}</h2>
@@ -33,6 +39,33 @@ const UserPage = () => {
         Praesentium harum nesciunt, similique perferendis fugit sint. Quas,
         similique cum. <span>{descr}</span>
       </p>
+      <br />
+      <br />
+
+      <nav className={s.nav}>
+        <NavLink
+          to="profile"
+          className={({ isActive }) => clsx(s.link, isActive && s.accent)}
+        >
+          Profile
+        </NavLink>
+        <NavLink
+          to="posts"
+          className={({ isActive }) => clsx(s.link, isActive && s.accent)}
+        >
+          Posts
+        </NavLink>
+        <NavLink
+          to="settings"
+          className={({ isActive }) => clsx(s.link, isActive && s.accent)}
+        >
+          Settings
+        </NavLink>
+        <NavLink to={`/users/${id}`} className={s.link}>
+          Close
+        </NavLink>
+      </nav>
+      <Outlet />
     </div>
   );
 };
